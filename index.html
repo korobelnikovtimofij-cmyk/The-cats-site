@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fffaf3">
+  <meta name="description" content="МУР — затишний куточок інтернету про котів: фото, цікаві факти та поради для щасливого котячого життя.">
+  <title>МУР. — Місце, де живе любов до котів</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #fffaf3;
+      --surface: #ffffff;
+      --ink: #302c36;
+      --muted: #817c85;
+      --border: #efe9e4;
+      --orange: #f68b53;
+      --orange-dark: #e4743f;
+      --purple: #7763a5;
+      --purple-pale: #eee8fa;
+      --mint: #def2de;
+      --peach: #fff0e7;
+      --shadow: 0 24px 70px rgba(82, 54, 39, .09);
+    }
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #1c1b22;
+      --surface: #28262f;
+      --ink: #fcf6ee;
+      --muted: #b1aab6;
+      --border: #3a3643;
+      --orange: #ffa16d;
+      --orange-dark: #eb8a53;
+      --purple: #c4b4f1;
+      --purple-pale: #373143;
+      --mint: #2f493b;
+      --peach: #362b2a;
+      --shadow: 0 22px 65px rgba(0, 0, 0, .22);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Manrope', sans-serif; -webkit-font-smoothing: antialiased; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; cursor: pointer; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+    ::selection { background: #ffd3b8; color: #302c36; }
+    :focus-visible { outline: 3px solid var(--purple); outline-offset: 4px; }
+    .container { width: min(1160px, calc(100% - 52px)); margin-inline: auto; }
+    .eyebrow { color: var(--orange-dark); font-weight: 800; font-size: 12px; letter-spacing: .15em; text-transform: uppercase; }
+    .section-title { font-size: clamp(34px, 4.5vw, 55px); letter-spacing: -.065em; line-height: 1.13; margin: 13px 0; }
+    .muted { color: var(--muted); line-height: 1.8; }
+    .btn { border: 0; border-radius: 100px; padding: 16px 25px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; font-weight: 800; font-size: 14px; transition: transform .2s, background .2s, box-shadow .2s; }
+    .btn:hover { transform: translateY(-3px); }
+    .btn-primary { background: var(--ink); color: var(--bg); box-shadow: 0 12px 25px rgba(36, 31, 41, .13); }
+    .btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--border); }
+    .btn-outline:hover { background: var(--surface); }
+    .btn-orange { background: var(--orange); color: #33221d; }
+    header { position: sticky; z-index: 30; top: 0; background: color-mix(in srgb, var(--bg) 91%, transparent); backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); }
+    .nav { height: 84px; display: flex; justify-content: space-between; align-items: center; gap: 22px; }
+    .brand { display: inline-flex; gap: 11px; align-items: center; font-family: 'DM Sans', sans-serif; font-size: 30px; letter-spacing: -.09em; font-weight: 800; white-space: nowrap; }
+    .brand-symbol { width: 41px; height: 41px; display: grid; place-items: center; border-radius: 14px; background: var(--orange); font-size: 22px; letter-spacing: 0; }
+    .nav-links { display: flex; gap: 32px; align-items: center; font-size: 13px; font-weight: 800; }
+    .nav-links a { transition: color .2s; }
+    .nav-links a:hover { color: var(--orange-dark); }
+    .nav-actions { display: flex; align-items: center; gap: 11px; }
+    .theme-toggle { width: 43px; height: 43px; border: 1px solid var(--border); border-radius: 50%; background: var(--surface); color: var(--ink); font-size: 18px; }
+    .small-cta { border: 0; background: var(--purple-pale); color: var(--ink); padding: 13px 18px; border-radius: 100px; font-size: 12px; font-weight: 800; }
+    .hero { padding: 66px 0 84px; position: relative; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: 50px; align-items: center; }
+    .hero-copy { position: relative; z-index: 2; }
+    .hero-pill { display: inline-flex; align-items: center; gap: 10px; border: 1px solid #f2dcca; background: var(--peach); padding: 10px 16px; border-radius: 100px; font-size: 12px; font-weight: 800; }
+    .hero h1 { font-size: clamp(56px, 6.45vw, 92px); line-height: 1.07; letter-spacing: -.088em; font-weight: 800; margin: 26px 0 25px; }
+    .hero h1 em { color: var(--orange); font-style: normal; position: relative; }
+    .hero h1 em::after { content: ''; position: absolute; bottom: -5px; left: 4%; right: 1%; height: 9px; background: var(--orange); border-radius: 50%; opacity: .48; transform: rotate(-2deg); }
+    .hero-description { max-width: 445px; font-size: 15px; line-height: 1.9; color: var(--muted); margin-bottom: 31px; }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-social { display: flex; align-items: center; gap: 14px; margin-top: 42px; color: var(--muted); font-size: 12px; font-weight: 700; }
+    .avatar-group { display: flex; padding-left: 6px; }
+    .avatar-group img { height: 36px; width: 36px; object-fit: cover; border-radius: 50%; border: 3px solid var(--bg); margin-left: -7px; }
+    .hero-visual { min-height: 540px; position: relative; display: grid; place-items: center; }
+    .hero-blob { position: absolute; inset: 25px 5px 35px 35px; background: #ffd8bd; border-radius: 52% 48% 45% 55% / 41% 51% 49% 59%; transform: rotate(-9deg); }
+    .hero-photo { position: relative; width: 88%; height: 485px; border: 8px solid rgba(255,255,255,.55); border-radius: 47% 47% 43% 43% / 38% 40% 34% 34%; object-fit: cover; object-position: 50% 40%; box-shadow: var(--shadow); transform: rotate(3deg); }
+    .floating-note { position: absolute; z-index: 2; background: var(--surface); box-shadow: 0 14px 38px rgba(61,42,30,.14); border-radius: 20px; padding: 15px 20px; display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 13px; }
+    .floating-note > span:first-child { font-size: 29px; }
+    .floating-note small { display: block; color: var(--muted); font-weight: 600; margin-top: 4px; }
+    .note-one { bottom: 47px; left: -10px; transform: rotate(-5deg); }
+    .note-two { top: 69px; right: -12px; transform: rotate(7deg); }
+    .sparkle { position: absolute; z-index: 3; font-size: 33px; }
+    .s-one { left: 18px; top: 47px; color: #f9bd59; }
+    .s-two { right: 12px; bottom: 51px; color: #a392c9; }
+    .highlights { padding: 0 0 115px; }
+    .highlight-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .highlight { padding: 25px 28px; border-radius: 23px; display: flex; gap: 18px; align-items: center; }
+    .highlight:nth-child(1) { background: var(--purple-pale); }
+    .highlight:nth-child(2) { background: var(--mint); color: #253a2d; }
+    .highlight:nth-child(3) { background: var(--peach); }
+    .highlight-icon { font-size: 36px; }
+    .highlight strong { display: block; font-weight: 800; letter-spacing: -.03em; margin-bottom: 4px; }
+    .highlight p { margin: 0; font-size: 12px; opacity: .76; line-height: 1.65; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 30px; }
+    .section-head .muted { max-width: 360px; font-size: 13px; margin-bottom: 8px; }
+    .gallery { padding-bottom: 115px; scroll-margin-top: 105px; }
+    .filters { display: flex; gap: 9px; margin-bottom: 26px; flex-wrap: wrap; }
+    .filter { border: 1px solid var(--border); color: var(--ink); background: var(--surface); border-radius: 100px; padding: 11px 20px; font-weight: 800; font-size: 12px; transition: .2s; }
+    .filter:hover { transform: translateY(-2px); }
+    .filter[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+    .cat-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+    .cat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 27px; overflow: hidden; box-shadow: 0 8px 25px rgba(60,44,33,.035); transition: transform .25s, box-shadow .25s; }
+    .cat-card:hover { transform: translateY(-7px); box-shadow: var(--shadow); }
+    .cat-card[hidden] { display: none; }
+    .cat-photo-wrap { position: relative; aspect-ratio: 1.22; overflow: hidden; background: var(--peach); }
+    .cat-photo { height: 100%; width: 100%; object-fit: cover; transition: transform .45s; }
+    .cat-card:hover .cat-photo { transform: scale(1.075); }
+    .favorite { position: absolute; right: 15px; top: 15px; width: 41px; height: 41px; border: 0; border-radius: 50%; background: rgba(255,255,255,.95); color: #a5a0a3; font-size: 22px; display: grid; place-items: center; transition: .2s; }
+    .favorite:hover { transform: scale(1.12); }
+    .favorite[aria-pressed="true"] { color: #f26f73; }
+    .cat-card-body { padding: 23px 24px 25px; }
+    .cat-meta { font-size: 11px; font-weight: 800; color: var(--orange-dark); letter-spacing: .09em; text-transform: uppercase; }
+    .cat-card h3 { margin: 8px 0; font-size: 21px; letter-spacing: -.045em; }
+    .cat-card p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.75; }
+    .favorites-status { font-size: 12px; font-weight: 700; color: var(--muted); margin-top: 21px; min-height: 18px; }
+    .facts { padding: 80px 0; background: var(--purple-pale); scroll-margin-top: 90px; position: relative; overflow: hidden; }
+    .facts::before, .facts::after { content: '✳'; position: absolute; font-size: 145px; color: var(--purple); opacity: .08; pointer-events: none; }
+    .facts::before { top: 10px; left: -30px; }
+    .facts::after { bottom: -50px; right: 0; }
+    .facts-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 80px; align-items: center; }
+    .facts .eyebrow { color: var(--purple); }
+    .facts-intro p { font-size: 14px; max-width: 385px; }
+    .fact-card { position: relative; min-height: 240px; padding: 34px 36px; background: var(--surface); border: 1px solid var(--border); border-radius: 28px; box-shadow: var(--shadow); display: flex; flex-direction: column; align-items: start; justify-content: space-between; }
+    .fact-card .quote-mark { font-size: 54px; color: var(--orange); height: 45px; line-height: 1; font-weight: 800; }
+    .fact-card p { font-size: clamp(17px, 2vw, 23px); font-weight: 800; line-height: 1.45; letter-spacing: -.035em; margin: 8px 0 20px; }
+    .fact-bottom { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 15px; }
+    .fact-index { font-size: 11px; color: var(--muted); font-weight: 800; }
+    .round-next { width: 46px; height: 46px; border: 0; border-radius: 50%; color: #2e2632; background: var(--orange); font-size: 24px; transition: transform .2s; }
+    .round-next:hover { transform: rotate(30deg); }
+    .tips { padding: 112px 0; scroll-margin-top: 105px; }
+    .tips .section-head { margin-bottom: 33px; }
+    .tip-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .tip { padding: 35px 29px 37px; background: var(--surface); border: 1px solid var(--border); border-radius: 26px; }
+    .tip-icon { height: 63px; width: 63px; border-radius: 19px; display: grid; place-items: center; font-size: 31px; margin-bottom: 24px; background: var(--peach); }
+    .tip:nth-child(2) .tip-icon { background: var(--purple-pale); }
+    .tip:nth-child(3) .tip-icon { background: var(--mint); }
+    .tip h3 { letter-spacing: -.035em; font-size: 20px; margin: 0 0 10px; }
+    .tip p { line-height: 1.8; color: var(--muted); margin: 0; font-size: 13px; }
+    .banner { background: #f5b582; color: #382923; border-radius: 33px; display: flex; justify-content: space-between; align-items: center; gap: 40px; padding: 45px 56px; margin-bottom: 100px; position: relative; overflow: hidden; }
+    .banner::after { content: '🐱'; font-size: 135px; position: absolute; right: 12%; top: -50px; opacity: .2; transform: rotate(18deg); }
+    .banner h2 { position: relative; z-index: 1; font-size: clamp(27px, 3.5vw, 42px); line-height: 1.2; letter-spacing: -.055em; margin: 0 0 11px; }
+    .banner p { position: relative; z-index: 1; margin: 0; font-size: 13px; line-height: 1.7; }
+    .banner a { position: relative; z-index: 1; background: #302b32; color: white; white-space: nowrap; }
+    footer { border-top: 1px solid var(--border); padding: 32px 0; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .footer-inner .brand { font-size: 24px; }
+    .footer-inner .brand-symbol { width: 34px; height: 34px; border-radius: 11px; font-size: 18px; }
+    .footer-inner p { margin: 0; color: var(--muted); font-size: 12px; text-align: right; }
+    @media (max-width: 1000px) {
+      .hero-grid { gap: 15px; }
+      .hero-visual { min-height: 460px; }
+      .hero-photo { height: 410px; }
+      .hero h1 { font-size: clamp(51px, 7vw, 72px); }
+      .facts-grid { gap: 35px; }
+      .note-two { right: -2px; }
+    }
+    @media (max-width: 760px) {
+      .container { width: min(100% - 34px, 540px); }
+      .nav { height: 74px; }
+      .nav-links { display: none; }
+      .small-cta { display: none; }
+      .hero { padding: 45px 0 56px; }
+      .hero-grid, .facts-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: clamp(52px, 12vw, 78px); }
+      .hero-visual { margin-top: 18px; min-height: 430px; }
+      .hero-photo { height: 390px; width: 85%; }
+      .hero-blob { inset: 18px 15px 22px 20px; }
+      .note-one { left: 3px; bottom: 30px; }
+      .note-two { right: 0; top: 37px; }
+      .highlights, .gallery { padding-bottom: 72px; }
+      .highlight-grid, .cat-grid, .tip-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .highlight-grid .highlight:last-child { grid-column: 1 / -1; }
+      .highlight { padding: 20px; }
+      .section-head { display: block; }
+      .facts { padding: 65px 0; }
+      .facts-grid { gap: 20px; }
+      .tips { padding: 75px 0; }
+      .banner { padding: 38px 28px; margin-bottom: 70px; flex-direction: column; align-items: start; gap: 24px; }
+      .banner::after { right: -10px; top: 0; }
+    }
+    @media (max-width: 510px) {
+      .hero-visual { min-height: 350px; }
+      .hero-photo { height: 325px; }
+      .floating-note { padding: 11px 12px; font-size: 10px; gap: 7px; border-radius: 14px; }
+      .floating-note > span:first-child { font-size: 20px; }
+      .floating-note small { font-size: 9px; }
+      .highlight-grid, .cat-grid, .tip-grid { grid-template-columns: 1fr; }
+      .highlight-grid .highlight:last-child { grid-column: auto; }
+      .cat-photo-wrap { aspect-ratio: 1.45; }
+      .highlight { padding: 22px; }
+      .fact-card { padding: 27px; }
+      .footer-inner { flex-direction: column; align-items: start; }
+      .footer-inner p { text-align: left; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav container" aria-label="Головна навігація">
+      <a class="brand" href="#home" aria-label="МУР — на головну"><span class="brand-symbol">🐾</span>МУР<span style="color:var(--orange)">.</span></a>
+      <div class="nav-links">
+        <a href="#gallery">Наші котики</a>
+        <a href="#facts">Цікаві факти</a>
+        <a href="#tips">Поради</a>
+      </div>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Увімкнути темну тему" title="Перемкнути тему">☾</button>
+        <a class="small-cta" href="#gallery">Дивитися котиків ↗</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="hero-grid container">
+        <div class="hero-copy">
+          <span class="hero-pill">🐱 &nbsp; Твоя щоденна порція муркотіння</span>
+          <h1 id="hero-title">Світ стає<br>кращим із<br><em>котиками.</em></h1>
+          <p class="hero-description">Маленькі лапки, великі характери й безмежна любов. Ласкаво просимо в найзатишніший куточок інтернету, присвячений нашим пухнастим друзям.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href="#gallery">Знайомитися з котиками <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-outline" href="#facts">Дізнатися більше <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="hero-social">
+            <div class="avatar-group" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1614118513802-c6ce1942a4f2?w=90&h=90&fit=crop" alt="">
+              <img src="https://images.unsplash.com/photo-1664728147948-f065da573631?w=90&h=90&fit=crop" alt="">
+              <img src="https://images.unsplash.com/photo-1631499420583-9b30fcd3fe78?w=90&h=90&fit=crop" alt="">
+            </div>
+            <span>Створено з любов’ю до пухнастиків 🧡</span>
+          </div>
+        </div>
+        <div class="hero-visual" aria-label="Фото милого рудого котика">
+          <div class="hero-blob" aria-hidden="true"></div>
+          <img class="hero-photo" src="https://images.unsplash.com/photo-1631499420583-9b30fcd3fe78?w=1100&h=1250&fit=crop&crop=faces&auto=format&q=85" alt="Рудий котик із великими зеленими очима">
+          <span class="sparkle s-one" aria-hidden="true">✦</span><span class="sparkle s-two" aria-hidden="true">✳</span>
+          <div class="floating-note note-one"><span>💛</span><span>Безлімітна милота<small>Щодня і без вихідних</small></span></div>
+          <div class="floating-note note-two"><span>🐾</span><span>Мур-мур!<small>Тут раді кожному</small></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="highlights container" aria-label="Чому ми любимо котів">
+      <div class="highlight-grid">
+        <div class="highlight"><span class="highlight-icon" aria-hidden="true">💜</span><div><strong>Дарують затишок</strong><p>Ідеальні компаньйони для спокійного вечора.</p></div></div>
+        <div class="highlight"><span class="highlight-icon" aria-hidden="true">😸</span><div><strong>Мають характер</strong><p>Кожен котик — унікальна особистість.</p></div></div>
+        <div class="highlight"><span class="highlight-icon" aria-hidden="true">✨</span><div><strong>Роблять день кращим</strong><p>Навіть один погляд на фото викликає усмішку.</p></div></div>
+      </div>
+    </section>
+
+    <section class="gallery container" id="gallery" aria-labelledby="gallery-title">
+      <div class="section-head">
+        <div><span class="eyebrow">Знайомтеся ближче</span><h2 class="section-title" id="gallery-title">Котики, яких неможливо<br>не полюбити. 🐈</h2></div>
+        <p class="muted">Вони бувають грайливими, спокійними та трохи бешкетними. Але всі — особливі.</p>
+      </div>
+      <div class="filters" role="group" aria-label="Фільтрувати котиків">
+        <button class="filter" data-filter="all" aria-pressed="true" type="button">Усі котики</button>
+        <button class="filter" data-filter="playful" aria-pressed="false" type="button">⚡ Грайливі</button>
+        <button class="filter" data-filter="calm" aria-pressed="false" type="button">🌙 Спокійні</button>
+      </div>
+      <div class="cat-grid">
+        <article class="cat-card" data-type="playful" data-id="ginger"><div class="cat-photo-wrap"><img class="cat-photo" loading="lazy" src="https://images.unsplash.com/photo-1631499420583-9b30fcd3fe78?w=760&h=625&fit=crop&auto=format&q=82" alt="Милий рудий котик"><button class="favorite" type="button" aria-label="Додати рудого мрійника до улюблених" aria-pressed="false">♥</button></div><div class="cat-card-body"><span class="cat-meta">Енергійний і допитливий</span><h3>Рудий мрійник</h3><p>Завжди готовий досліджувати світ і знаходити нові пригоди.</p></div></article>
+        <article class="cat-card" data-type="calm" data-id="silver"><div class="cat-photo-wrap"><img class="cat-photo" loading="lazy" src="https://images.unsplash.com/photo-1614118513802-c6ce1942a4f2?w=760&h=625&fit=crop&auto=format&q=82" alt="Сірий смугастий котик"><button class="favorite" type="button" aria-label="Додати маленького філософа до улюблених" aria-pressed="false">♥</button></div><div class="cat-card-body"><span class="cat-meta">Тихий спостерігач</span><h3>Маленький філософ</h3><p>Любить уважно стежити за світом і цінує кожну хвилину спокою.</p></div></article>
+        <article class="cat-card" data-type="calm" data-id="snow"><div class="cat-photo-wrap"><img class="cat-photo" loading="lazy" src="https://images.unsplash.com/photo-1664728147948-f065da573631?w=760&h=625&fit=crop&auto=format&q=82" alt="Білий пухнастий котик"><button class="favorite" type="button" aria-label="Додати пухнасту хмаринку до улюблених" aria-pressed="false">♥</button></div><div class="cat-card-body"><span class="cat-meta">Ніжний і затишний</span><h3>Пухнаста хмаринка</h3><p>Наче маленька сніжинка, що прийшла подарувати тобі тепло.</p></div></article>
+        <article class="cat-card" data-type="playful" data-id="sunny"><div class="cat-photo-wrap"><img class="cat-photo" loading="lazy" src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=760&h=625&fit=crop&auto=format&q=82" alt="Котик уважно дивиться в камеру"><button class="favorite" type="button" aria-label="Додати мисливця за сонцем до улюблених" aria-pressed="false">♥</button></div><div class="cat-card-body"><span class="cat-meta">Грайливий і сміливий</span><h3>Мисливець за сонцем</h3><p>Знайде сонячного зайчика навіть у найпохмуріший день.</p></div></article>
+        <article class="cat-card" data-type="calm" data-id="king"><div class="cat-photo-wrap"><img class="cat-photo" loading="lazy" src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=760&h=625&fit=crop&auto=format&q=82" alt="Котик відпочиває"><button class="favorite" type="button" aria-label="Додати короля дивану до улюблених" aria-pressed="false">♥</button></div><div class="cat-card-body"><span class="cat-meta">Майстер відпочинку</span><h3>Король дивану</h3><p>Переконаний, що найважливіша справа дня — добре виспатися.</p></div></article>
+        <article class="cat-card" data-type="playful" data-id="star"><div class="cat-photo-wrap"><img class="cat-photo" loading="lazy" src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=760&h=625&fit=crop&auto=format&q=82" alt="Стильний котик у сонцезахисних окулярах"><button class="favorite" type="button" aria-label="Додати котячу суперзірку до улюблених" aria-pressed="false">♥</button></div><div class="cat-card-body"><span class="cat-meta">Зірка з характером</span><h3>Котяча суперзірка</h3><p>Знає, що стиль починається з упевненого «мяу».</p></div></article>
+      </div>
+      <p class="favorites-status" id="favoritesStatus" aria-live="polite">Натисни ♡ на фото, щоб додати котика до улюблених.</p>
+    </section>
+
+    <section class="facts" id="facts" aria-labelledby="facts-title">
+      <div class="facts-grid container">
+        <div class="facts-intro"><span class="eyebrow">А ти знав?</span><h2 class="section-title" id="facts-title">У котів є<br>свої секрети. ✨</h2><p class="muted">Котячий світ сповнений маленьких див. Натискай кнопку, щоб дізнатися щось нове!</p></div>
+        <div class="fact-card"><div class="quote-mark" aria-hidden="true">“</div><p id="factText" aria-live="polite">Котячі вуса допомагають відчувати простір і помічати предмети поруч.</p><div class="fact-bottom"><span class="fact-index" id="factIndex">ФАКТ 01 / 05</span><button class="round-next" id="nextFact" type="button" aria-label="Наступний цікавий факт">↻</button></div></div>
+      </div>
+    </section>
+
+    <section class="tips container" id="tips" aria-labelledby="tips-title">
+      <div class="section-head"><div><span class="eyebrow">Турбота — це любов</span><h2 class="section-title" id="tips-title">Трохи щастя<br>для твого котика. 💗</h2></div><p class="muted">Три прості звички, які допоможуть створити комфортне середовище для пухнастого друга.</p></div>
+      <div class="tip-grid">
+        <article class="tip"><div class="tip-icon" aria-hidden="true">🧶</div><h3>Грайтеся щодня</h3><p>Іграшки, вудочки та цікаві завдання допомагають котам рухатися, досліджувати й не нудьгувати.</p></article>
+        <article class="tip"><div class="tip-icon" aria-hidden="true">💧</div><h3>Не забувайте про воду</h3><p>Завжди залишайте доступ до чистої свіжої води, а мисочки тримайте в чистоті.</p></article>
+        <article class="tip"><div class="tip-icon" aria-hidden="true">🏡</div><h3>Створіть затишок</h3><p>Зручне місце для сну, кігтеточка та спокійний куточок — чудова основа котячого комфорту.</p></article>
+      </div>
+    </section>
+
+    <aside class="banner container" aria-label="Повернутися до галереї">
+      <div><h2>Щастя має лапки. 🐾</h2><p>Іноді для гарного настрою достатньо одного маленького «мяу».</p></div>
+      <a class="btn" href="#gallery">Ще більше котиків <span aria-hidden="true">↗</span></a>
+    </aside>
+  </main>
+
+  <footer><div class="footer-inner container"><a class="brand" href="#home"><span class="brand-symbol">🐾</span>МУР<span style="color:var(--orange)">.</span></a><p>Зроблено з любов’ю до котів • 2026<br>Простий статичний сайт на HTML, CSS і JavaScript</p></div></footer>
+
+  <script>
+    // Увесь сайт працює без сервера й бази даних.
+    const facts = [
+      'Котячі вуса допомагають відчувати простір і помічати предмети поруч.',
+      'Коти часто бувають найактивнішими на світанку та в сутінках.',
+      'Коли кіт треться щічками об предмети, він залишає на них власний запах.',
+      'Муркотіння не завжди означає радість: іноді коти муркочуть, коли хвилюються.',
+      'Коти можуть використовувати нявкання, щоб привернути увагу людини.'
+    ];
+    let currentFact = 0;
+    const factText = document.getElementById('factText');
+    const factIndex = document.getElementById('factIndex');
+    document.getElementById('nextFact').addEventListener('click', () => {
+      currentFact = (currentFact + 1) % facts.length;
+      factText.textContent = facts[currentFact];
+      factIndex.textContent = `ФАКТ ${String(currentFact + 1).padStart(2, '0')} / ${String(facts.length).padStart(2, '0')}`;
+    });
+
+    // Фільтри карток: усе виконується локально у браузері.
+    const filters = document.querySelectorAll('.filter');
+    const cards = document.querySelectorAll('.cat-card');
+    filters.forEach(button => button.addEventListener('click', () => {
+      const type = button.dataset.filter;
+      filters.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      cards.forEach(card => { card.hidden = type !== 'all' && card.dataset.type !== type; });
+    }));
+
+    // Улюблені котики зберігаються тільки у цьому браузері через localStorage.
+    function readFavorites() {
+      try {
+        const saved = JSON.parse(localStorage.getItem('mur-favorites') || '[]');
+        return new Set(Array.isArray(saved) ? saved : []);
+      } catch { return new Set(); }
+    }
+    const favorites = readFavorites();
+    const favoritesStatus = document.getElementById('favoritesStatus');
+    function updateFavorites() {
+      document.querySelectorAll('.cat-card').forEach(card => {
+        const selected = favorites.has(card.dataset.id);
+        const button = card.querySelector('.favorite');
+        button.setAttribute('aria-pressed', String(selected));
+        button.textContent = selected ? '♥' : '♡';
+      });
+      favoritesStatus.textContent = favorites.size
+        ? `Улюблені котики: ${favorites.size} 🧡 Збережено у цьому браузері.`
+        : 'Натисни ♡ на фото, щоб додати котика до улюблених.';
+    }
+    document.querySelectorAll('.favorite').forEach(button => button.addEventListener('click', () => {
+      const id = button.closest('.cat-card').dataset.id;
+      if (favorites.has(id)) favorites.delete(id); else favorites.add(id);
+      try { localStorage.setItem('mur-favorites', JSON.stringify([...favorites])); } catch {}
+      updateFavorites();
+    }));
+    updateFavorites();
+
+    const themeToggle = document.getElementById('themeToggle');
+    let savedTheme = 'light';
+    try { savedTheme = localStorage.getItem('mur-theme') || 'light'; } catch {}
+    function setTheme(theme) {
+      const dark = theme === 'dark';
+      document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+      themeToggle.textContent = dark ? '☀' : '☾';
+      themeToggle.setAttribute('aria-label', dark ? 'Увімкнути світлу тему' : 'Увімкнути темну тему');
+      try { localStorage.setItem('mur-theme', dark ? 'dark' : 'light'); } catch {}
+    }
+    setTheme(savedTheme);
+    themeToggle.addEventListener('click', () => setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'));
+  </script>
+</body>
+</html>
